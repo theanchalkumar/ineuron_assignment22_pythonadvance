@@ -1,0 +1,209 @@
+Q1. What are the benefits of the built-in array package, if any?
+
+# Ans : Arrays represent multiple data items of the same type using a single name.In arrays, the elements can be 
+#       accessed randomly by using the index number. Arrays allocate memory in contiguous memory locations for all its
+#       elements. Hence there is no chance of extra memory being allocated in case of arrays. This avoids memory 
+#       overflow or shortage of memory in arrays.
+
+
+     
+Q2. What are some of the array package's limitations?
+
+# Ans : The number of elements to be stored in an array should be known in advance. An array is a static structure 
+#      (which means the array is of fixed size). Once declared the size of the array cannot be modified. The memory 
+#       which is allocated to it cannot be increased or decreased. Insertion and deletion are quite difficult in an 
+#       array as the elements are stored in consecutive memory locations and the shifting operation is costly. 
+#       Allocating more memory than the requirement leads to wastage of memory space and less allocation of memory 
+#       also leads to a problem.
+
+
+     
+Q3. Describe the main differences between the array and numpy packages.
+
+# Ans : The array package doesn't provide any help with numerical calculation with the items insdie it in number form 
+#       while NumPy give you a wide variety of numerical operations. An array is a single dimensional entity which hold
+#       the numerical data, while numpy can have more than 1 dimension.In case of array, item can be accessed by its
+#       index position and it is easy task while in numpy item is accessed by its column and row index, which makes 
+#       it slightly time taking. Same goes with appending operation.In case of array we do not form a tabular 
+#       structure, while in numpy it forms a tabular structure.
+
+
+     
+Q4. Explain the distinctions between the empty, ones, and zeros functions.
+
+# Ans : Empty function: An empty function is a function that does not contain any statement within its body. If you 
+#       try to write a function definition without any statement in python ,it will return an error. To avoid this,
+#       we use pass statement. pass is a special statement in Python that does nothing. It only works as a dummy 
+#       statement ones: This function returns a new array of given shape and data type, where the element’s value is 1.
+#       zeros: This function returns a new array of given shape and data type, where the element’s value is 0
+
+
+     
+Q5. In the fromfunction function, which is used to construct new arrays, what is the role of the callable argument?
+
+# Ans : Its function is to execute the function over each coordinate and the resulting array. The function is called
+#       with N parameters, where N is the rank of shape. Each parameter represents the coordinates of the array 
+#       varying along a specific axis.
+
+
+     
+Q6. What happens when a numpy array is combined with a single-value operand (a scalar, such as an int or a floating-point value) through addition, as in the expression A + n?
+
+# Ans : If any scaler value such as integer is added to the numpy array then all the elements inside the array 
+#       will add that value in it.
+#       Example :
+import numpy as np
+a=np.arange(9).reshape(3,3)
+print(a)
+print()
+print(a+1)
+
+
+     
+[[0 1 2]
+ [3 4 5]
+ [6 7 8]]
+
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+Q7. Can array-to-scalar operations use combined operation-assign operators (such as += or *=)? What is the outcome?
+
+# Ans : It will do the operation as per operators. Like if we use + operand it will update the current array by adding 
+#       and when we use '*', it will update by multiplying.
+
+
+     
+
+#      Example :
+print(a)
+
+
+     
+[[0 1 2]
+ [3 4 5]
+ [6 7 8]]
+
+a+=1
+print(a)
+
+
+     
+[[ 2  3  4]
+ [ 5  6  7]
+ [ 8  9 10]]
+
+a*=2
+print(a)
+
+
+     
+[[ 4  6  8]
+ [10 12 14]
+ [16 18 20]]
+Q8. Does a numpy array contain fixed-length strings? What happens if you allocate a longer string to one of these arrays?
+
+# Ans : Yes it is possible that we can include a string of fixed length in numpy array. The dtype of any numpy array 
+#       containing string values is the maximum length of any string present in the array.
+#       Once set, it will only be able to store new string having length not more than the maximum length at the time 
+#       of the creation. If we try to reassign some another string value having length greater than the maximum length
+#       of the existing elements, it simply discards all the values beyond the maximum length accept upto those values 
+#       which are under the limit.
+import numpy as np
+name = np.array(['ram', 'mohan', 'shiva'])
+name
+
+
+     
+array(['ram', 'mohan', 'shiva'], dtype='
+
+name[name=='ram']='undertaker'
+print(name)
+
+
+     
+['under' 'mohan' 'shiva']
+Q9. What happens when you combine two numpy arrays using an operation like addition (+) or multiplication (*)? What are the conditions for combining two numpy arrays?
+
+# Ans : It will simply add or multiply element to element at same position.The only requirement which must be met are:
+#      1)Data type should be same.
+#      2) Shape of the two matrices must be same
+#      Example is as follows :
+a1=a
+a1
+
+
+     
+array([[ 4,  6,  8],
+       [10, 12, 14],
+       [16, 18, 20]])
+
+a2=a+2
+a2
+
+
+     
+array([[ 6,  8, 10],
+       [12, 14, 16],
+       [18, 20, 22]])
+
+a1+a2
+
+
+     
+array([[10, 14, 18],
+       [22, 26, 30],
+       [34, 38, 42]])
+
+a1*a2
+
+
+     
+array([[ 24,  48,  80],
+       [120, 168, 224],
+       [288, 360, 440]])
+
+a1+a2.reshape(9,1)
+
+a1*a2.reshape(9,1)
+
+Q10. What is the best way to use a Boolean array to mask another array?
+
+# Ans : 
+y = np.array([.True,True,False,True])          
+x = np.array([1,2,3,4])         
+m = np.ma.masked_where(x>2,y)  
+print(list(m))
+print(m.ndim)
+
+
+     
+[True, True, masked, masked]
+1
+Q11. What are three different ways to get the standard deviation of a wide collection of data using both standard Python and its packages? Sort the three of them by how quickly they execute.
+
+# Ans : Standard deviation can be calculated in amny ways. If wee see the formula of SD, it says 
+#       std= Square Root of [ Summation of [square of (x-mean)/number of observation] ] .So this can be achive by:
+#       1)Using math module :
+import math
+N = 1
+avg=a
+total=N
+x=[1,2]
+SD=math.sqrt((1-a)**2+(2-a)**2/N)
+
+
+     
+
+#       2)Using Numpy Array package
+import numpy as np
+SD=np.std(x)
+
+
+     
+
+#       3) General calculation without using any package
+SD= (((1-avg)**2 + (2-avg)**2)/N)**1/2
+
+
+   
